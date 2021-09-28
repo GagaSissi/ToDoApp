@@ -2,7 +2,11 @@
 
 console.log("Hallo ToDoApp!");
 
-document.getElementById("btn").addEventListener("click", meine_funktion);
+const btn = document.querySelector("#btn");
+
+btn.addEventListener("click", meine_funktion);
 function meine_funktion() {
-  alert("Hallo nochmal!");
+  const neuesToDo = document.querySelector("#textbox");
+  const ToDoValue = neuesToDo.value;
+  console.log("Das neue ToDo:" + ToDoValue);
 }
