@@ -1,4 +1,4 @@
-"use district";
+"use strict";
 
 console.log("Hallo ToDoApp!");
 
