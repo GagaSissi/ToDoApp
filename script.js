@@ -8,5 +8,9 @@ btn.addEventListener("click", meine_funktion);
 function meine_funktion() {
   const neuesToDo = document.querySelector("#textbox");
   const ToDoValue = neuesToDo.value;
-  console.log("Das neue ToDo:" + ToDoValue);
+
+  const newLi = document.createElement("li");
+  newLi.innerText = neuesToDo;
+
+  newToDoInputEl.value = "";
 }
