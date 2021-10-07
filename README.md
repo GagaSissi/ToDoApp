@@ -7,4 +7,4 @@
 - Inputfeld Text
 - Add Button für ToDo
 - Add Todo to List
-- Logical Checks
+- InsertCheckbox

@@ -1,5 +1,5 @@
 "use strict";
-
+const listDoSave = [];
 // Teilaufgabe "Hallo" in die Konsole ausgeben
 console.log("Hallo ToDoApp!");
 
@@ -12,6 +12,7 @@ function meine_funktion() {
   const neuesToDo = document.querySelector("#textbox");
   //Leerstellen raus nehmen, in kleinbuchstaben umwandeln
   const toDoValue = neuesToDo.value.trim().toLowerCase();
+  listDoSave.push(toDoValue);
   // Erzeugen eines Listenelements
   const newLi = document.createElement("li");
   // Anhängen der Liste in den DOM
@@ -26,4 +27,13 @@ function meine_funktion() {
   console.log(toDoValue);
   // Wert in Testfeld auf Leer ändern
   neuesToDo.value = "";
+
+  // Test, localstorage übergeben
+  const saveData = localStorage.setItem("saveData", `${listDoSave + 1}`);
+
+  // if (saveData !== null) {
+  //   localStorage.setItem("Servus", saveData);
+  // } else {
+  //   console.warn("No Item in List.");
+  // }
 }

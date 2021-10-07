@@ -15,5 +15,7 @@ form {
 
 ul {
   list-style-type: none;
-  text-align: center;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
 }
