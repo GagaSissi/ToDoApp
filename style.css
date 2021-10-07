@@ -1,0 +1,19 @@
+html {
+  font-family: "Rubik", sans-serif;
+}
+
+h1 {
+  display: flex;
+  justify-content: center;
+  background-color: lightslategrey;
+}
+
+form {
+  display: flex;
+  justify-content: center;
+}
+
+ul {
+  list-style-type: none;
+  text-align: center;
+}
