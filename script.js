@@ -29,7 +29,7 @@ function meine_funktion() {
   neuesToDo.value = "";
 
   // Test, localstorage übergeben
-  const saveData = localStorage.setItem("saveData", `${listDoSave + 1}`);
+  const saveData = localStorage.setItem("saveData", `${listDoSave}`);
 
   // if (saveData !== null) {
   //   localStorage.setItem("Servus", saveData);
