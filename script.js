@@ -1,39 +1,66 @@
 "use strict";
-const listDoSave = [];
-// Teilaufgabe "Hallo" in die Konsole ausgeben
-console.log("Hallo ToDoApp!");
+let listDoSave = [];
+
+fetchAPIData();
+
+function fetchAPIData() {
+  fetch("http://localhost:4730/todos")
+    .then((responce) => responce.json())
+    .then((data) => {
+      listDoSave = data;
+      createDataFromAPI();
+    });
+}
+
+function createNewTodo(desc) {
+  fetch("http://localhost:4730/todos", {
+    method: "POST",
+    body: JSON.stringify({ description: desc, done: false }),
+    headers: { "Content-type": "application/json; charset=UTF-8" },
+  });
+}
+
+function deleteTodo(idParameter) {
+  fetch("http://localhost:4730/todos/" + idParameter, {
+    method: "DELETE",
+  });
+}
+
+// deleteTodo(5);
 
 const btn = document.querySelector("#btn");
-// Bei click auf Button, Funktion ausführen
-btn.addEventListener("click", meine_funktion);
+btn.addEventListener("click", catchData);
 
 // Funktion
-function meine_funktion() {
-  const neuesToDo = document.querySelector("#textbox");
-  //Leerstellen raus nehmen, in kleinbuchstaben umwandeln
-  const toDoValue = neuesToDo.value.trim().toLowerCase();
-  listDoSave.push(toDoValue);
-  // Erzeugen eines Listenelements
+function catchData() {
+  const newTodo = document.querySelector("#textbox");
+  const toDoValue = newTodo.value.trim().toLowerCase();
+  listDoSave.push(createNewTodo(toDoValue));
+
   const newLi = document.createElement("li");
-  // Anhängen der Liste in den DOM
   const list = document.querySelector("#list");
   list.appendChild(newLi);
-  // Mit Attribut Checkbox einfügen
   const todoCheckboxEl = document.createElement("input");
   todoCheckboxEl.setAttribute("type", "checkbox");
-  list.appendChild(todoCheckboxEl);
+  newLi.appendChild(todoCheckboxEl);
+
   // Text in Wert umwandeln, überprüfen mit Consolenausgabe
   newLi.innerText = toDoValue;
   console.log(toDoValue);
-  // Wert in Testfeld auf Leer ändern
-  neuesToDo.value = "";
+  // Wert in Textfeld auf Leer ändern
+  newTodo.value = "";
+}
 
-  // Test, localstorage übergeben
-  const saveData = localStorage.setItem("saveData", `${listDoSave}`);
-
-  // if (saveData !== null) {
-  //   localStorage.setItem("Servus", saveData);
-  // } else {
-  //   console.warn("No Item in List.");
-  // }
+function createDataFromAPI() {
+  const anotherListForListElements = document.querySelector("#list");
+  anotherListForListElements.innerHTML = "";
+  listDoSave.forEach(function (element) {
+    const newList2 = document.createElement("li");
+    newList2.innerText = element.description;
+    anotherListForListElements.appendChild(newList2);
+    const todoCheckboxEl2 = document.createElement("input");
+    todoCheckboxEl2.setAttribute("type", "checkbox");
+    newList2.appendChild(todoCheckboxEl2);
+    // Update todos ( when changing the done state) using a put request
+  });
 }
